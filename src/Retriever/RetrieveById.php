@@ -40,7 +40,7 @@ final class RetrieveById
 
         return call(function () use ($matches) {
             $request = new Request(
-                sprintf('http://www.omdbapi.com/?i=tt%d&apikey=%s', $matches[1], $this->apiKey->getKey()),
+                sprintf('http://www.omdbapi.com/?i=tt%s&apikey=%s', $matches[1], $this->apiKey->getKey()),
             );
 
             try {
