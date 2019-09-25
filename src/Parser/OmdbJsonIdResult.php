@@ -26,7 +26,7 @@ final class OmdbJsonIdResult
             $result['Plot'],
             $result['Language'],
             $result['Country'],
-            $result['Awards'],
+            $this->getValueWhenAvailable($result['Awards']),
             $result['Poster'],
             $this->transformToRatings($result['Ratings']),
             (int) $result['Metascore'],
@@ -35,9 +35,9 @@ final class OmdbJsonIdResult
             $result['imdbID'],
             Type::fromOmdbType($result['Type']),
             $this->transformToDateTime($result['DVD']),
-            $result['BoxOffice'],
+            $this->getValueWhenAvailable($result['BoxOffice']),
             $result['Production'],
-            $result['Website'],
+            $this->getValueWhenAvailable($result['Website']),
         );
     }
 
@@ -59,5 +59,14 @@ final class OmdbJsonIdResult
         }
 
         return $parsedRatings;
+    }
+
+    private function getValueWhenAvailable(string $value): ?string
+    {
+        if ($value === 'N/A') {
+            return null;
+        }
+
+        return $value;
     }
 }

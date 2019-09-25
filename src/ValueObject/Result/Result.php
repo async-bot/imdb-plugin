@@ -30,7 +30,7 @@ final class Result
 
     private string $country;
 
-    private string $awards;
+    private ?string $awards;
 
     private string $poster;
 
@@ -49,11 +49,11 @@ final class Result
 
     private \DateTimeImmutable $dvdRelease;
 
-    private string $boxOffice;
+    private ?string $boxOffice;
 
     private string $producer;
 
-    private string $website;
+    private ?string $website;
 
     /**
      * @param array<Rating> $ratings
@@ -71,7 +71,7 @@ final class Result
         string $plot,
         string $language,
         string $country,
-        string $awards,
+        ?string $awards,
         string $poster,
         array $ratings,
         int $metaScore,
@@ -80,9 +80,9 @@ final class Result
         string $imdbId,
         Type $type,
         \DateTimeImmutable $dvdRelease,
-        string $boxOffice,
+        ?string $boxOffice,
         string $producer,
-        string $website
+        ?string $website
     ) {
         $this->title      = $title;
         $this->year       = $year;
@@ -170,7 +170,7 @@ final class Result
         return $this->country;
     }
 
-    public function getAwards(): string
+    public function getAwards(): ?string
     {
         return $this->awards;
     }
@@ -218,7 +218,7 @@ final class Result
         return $this->dvdRelease;
     }
 
-    public function getBoxOffice(): string
+    public function getBoxOffice(): ?string
     {
         return $this->boxOffice;
     }
@@ -228,7 +228,7 @@ final class Result
         return $this->producer;
     }
 
-    public function getWebsite(): string
+    public function getWebsite(): ?string
     {
         return $this->website;
     }
