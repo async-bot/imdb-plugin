@@ -2,9 +2,7 @@
 
 namespace AsyncBot\Plugin\Imdb\ValueObject\Result;
 
-use function ExceptionalJSON\decode;
-
-final class Result
+final class Title
 {
     private string $title;
 
@@ -34,8 +32,7 @@ final class Result
 
     private ?string $poster;
 
-    /** @var array<Rating> */
-    private array $ratings = [];
+    private Ratings $ratings;
 
     private int $metaScore;
 
@@ -55,9 +52,6 @@ final class Result
 
     private ?string $website;
 
-    /**
-     * @param array<Rating> $ratings
-     */
     public function __construct(
         string $title,
         int $year,
@@ -73,7 +67,7 @@ final class Result
         string $country,
         ?string $awards,
         ?string $poster,
-        array $ratings,
+        Ratings $ratings,
         int $metaScore,
         float $imdbRating,
         int $imdbVotes,
@@ -180,10 +174,7 @@ final class Result
         return $this->poster;
     }
 
-    /**
-     * @return array<Rating>
-     */
-    public function getRatings(): array
+    public function getRatings(): Ratings
     {
         return $this->ratings;
     }

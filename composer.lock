@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "832f12a75403c19ee527092a261a6c00",
+    "content-hash": "8fb4762508dfe45c3ab8a75335c72e5e",
     "packages": [
         {
             "name": "amphp/amp",
@@ -724,19 +724,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/async-bot/core.git",
-                "reference": "1b0b8bd4f3dc0eac6f65c97dbfa10e77dae2197d"
+                "reference": "96b31caa1bb3d1233c1b3264251c1d13b9e41113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/async-bot/core/zipball/1b0b8bd4f3dc0eac6f65c97dbfa10e77dae2197d",
-                "reference": "1b0b8bd4f3dc0eac6f65c97dbfa10e77dae2197d",
+                "url": "https://api.github.com/repos/async-bot/core/zipball/96b31caa1bb3d1233c1b3264251c1d13b9e41113",
+                "reference": "96b31caa1bb3d1233c1b3264251c1d13b9e41113",
                 "shasum": ""
             },
             "require": {
                 "amphp/amp": "^2.2.0",
                 "amphp/byte-stream": "^1.6",
+                "amphp/http-client": "^v4.0.0-rc4",
                 "amphp/log": "^1.0",
+                "daverandom/exceptional-json": "^1.0",
                 "monolog/monolog": "^1.24",
+                "opis/json-schema": "^1.0",
                 "php": "^7.4",
                 "psr/log": "^1.1"
             },
@@ -764,7 +767,7 @@
                 }
             ],
             "description": "Shared code for the Async Bot project",
-            "time": "2019-08-21T19:28:22+00:00"
+            "time": "2019-09-25T22:30:12+00:00"
         },
         {
             "name": "daverandom/exceptional-json",

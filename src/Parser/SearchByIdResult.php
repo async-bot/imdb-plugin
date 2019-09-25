@@ -3,17 +3,14 @@
 namespace AsyncBot\Plugin\Imdb\Parser;
 
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Rating;
-use AsyncBot\Plugin\Imdb\ValueObject\Result\Result;
+use AsyncBot\Plugin\Imdb\ValueObject\Result\Title;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Type;
-use function ExceptionalJSON\decode;
 
-final class OmdbJsonIdResult
+final class SearchByIdResult
 {
-    public function parse(string $jsonResult): Result
+    public function parse(array $result): Title
     {
-        $result = decode($jsonResult, true);
-
-        return new Result(
+        return new Title(
             $result['Title'],
             (int) $result['Year'],
             $result['Rated'],

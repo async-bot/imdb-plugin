@@ -7,7 +7,7 @@ use AsyncBot\Plugin\Imdb\ValueObject\Result\SearchResults;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Type;
 use function ExceptionalJSON\decode;
 
-final class OmdbJsonSearchResult
+final class SearchByTitleResult
 {
     public function parse(string $jsonResult): SearchResults
     {

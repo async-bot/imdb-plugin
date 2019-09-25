@@ -2,12 +2,12 @@
 
 namespace AsyncBot\Plugin\Imdb;
 
-use Amp\Http\Client\Client;
 use Amp\Promise;
-use AsyncBot\Plugin\Imdb\Retriever\RetrieveById;
+use AsyncBot\Core\Http\Client;
+use AsyncBot\Plugin\Imdb\Retriever\SearchById;
 use AsyncBot\Plugin\Imdb\Retriever\SearchByTitle;
 use AsyncBot\Plugin\Imdb\ValueObject\ApiKey;
-use AsyncBot\Plugin\Imdb\ValueObject\Result\Result;
+use AsyncBot\Plugin\Imdb\ValueObject\Result\Title;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\SearchResults;
 use function Amp\call;
 
@@ -24,16 +24,16 @@ final class Plugin
     }
 
     /**
-     * @return Promise<Result>
+     * @return Promise<Title>
      * @throws Exception\InvalidImdbId
      */
     public function getByImdbId(string $imdbId): Promise
     {
-        return (new RetrieveById($this->httpClient, $this->apiKey))->retrieve($imdbId);
+        return (new SearchById($this->httpClient, $this->apiKey))->retrieve($imdbId);
     }
 
     /**
-     * @return Promise<Result>
+     * @return Promise<Title>
      */
     public function searchByTitle(string $title): Promise
     {
