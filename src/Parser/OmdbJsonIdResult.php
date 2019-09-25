@@ -52,6 +52,12 @@ final class OmdbJsonIdResult
      */
     private function transformToRatings(array $ratings): array
     {
-        return array_map(fn (array $rating) => new Rating($rating['Source'], $rating['Value']), $ratings);
+        $parsedRatings = [];
+
+        foreach ($ratings as $rating) {
+            $parsedRatings[$rating['Source']] = new Rating($rating['Source'], $rating['Value']);
+        }
+
+        return $parsedRatings;
     }
 }
