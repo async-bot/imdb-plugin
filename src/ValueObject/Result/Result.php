@@ -32,7 +32,7 @@ final class Result
 
     private ?string $awards;
 
-    private string $poster;
+    private ?string $poster;
 
     /** @var array<Rating> */
     private array $ratings = [];
@@ -72,7 +72,7 @@ final class Result
         string $language,
         string $country,
         ?string $awards,
-        string $poster,
+        ?string $poster,
         array $ratings,
         int $metaScore,
         float $imdbRating,
@@ -175,7 +175,7 @@ final class Result
         return $this->awards;
     }
 
-    public function getPoster(): string
+    public function getPoster(): ?string
     {
         return $this->poster;
     }

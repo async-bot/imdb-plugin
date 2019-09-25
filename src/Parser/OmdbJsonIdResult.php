@@ -9,7 +9,7 @@ use function ExceptionalJSON\decode;
 
 final class OmdbJsonIdResult
 {
-    public function parse(string $jsonResult)
+    public function parse(string $jsonResult): Result
     {
         $result = decode($jsonResult, true);
 
@@ -27,7 +27,7 @@ final class OmdbJsonIdResult
             $result['Language'],
             $result['Country'],
             $this->getValueWhenAvailable($result['Awards']),
-            $result['Poster'],
+            $this->getValueWhenAvailable($result['Poster']),
             $this->transformToRatings($result['Ratings']),
             (int) $result['Metascore'],
             (float) $result['imdbRating'],
