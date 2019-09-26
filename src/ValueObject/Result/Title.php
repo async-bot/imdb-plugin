@@ -16,7 +16,7 @@ final class Title
 
     private string $genre;
 
-    private string $director;
+    private ?string $director;
 
     private string $writers;
 
@@ -34,7 +34,7 @@ final class Title
 
     private Ratings $ratings;
 
-    private int $metaScore;
+    private ?int $metaScore;
 
     private float $imdbRating;
 
@@ -59,7 +59,7 @@ final class Title
         \DateTimeImmutable $released,
         string $runTime,
         string $genre,
-        string $director,
+        ?string $director,
         string $writers,
         string $actors,
         string $plot,
@@ -68,7 +68,7 @@ final class Title
         ?string $awards,
         ?string $poster,
         Ratings $ratings,
-        int $metaScore,
+        ?int $metaScore,
         float $imdbRating,
         int $imdbVotes,
         string $imdbId,
@@ -134,7 +134,7 @@ final class Title
         return $this->genre;
     }
 
-    public function getDirector(): string
+    public function getDirector(): ?string
     {
         return $this->director;
     }
@@ -179,7 +179,7 @@ final class Title
         return $this->ratings;
     }
 
-    public function getMetaScore(): int
+    public function getMetaScore(): ?int
     {
         return $this->metaScore;
     }

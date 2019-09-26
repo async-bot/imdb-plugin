@@ -18,7 +18,7 @@ final class SearchByIdResult
             $this->transformToDateTime($result['Released']),
             $result['Runtime'],
             $result['Genre'],
-            $result['Director'],
+            $this->getValueWhenAvailable($result['Director']),
             $result['Writer'],
             $result['Actors'],
             $result['Plot'],
@@ -27,7 +27,7 @@ final class SearchByIdResult
             $this->getValueWhenAvailable($result['Awards']),
             $this->getValueWhenAvailable($result['Poster']),
             $this->transformToRatings($result['Ratings']),
-            (int) $result['Metascore'],
+            $result['Metascore'] === 'N/A' ? null : (int) $result['Metascore'],
             (float) $result['imdbRating'],
             (int) $result['imdbVotes'],
             $result['imdbID'],
@@ -56,9 +56,9 @@ final class SearchByIdResult
         }
 
         return new Ratings(
-            $parsedRatings['Internet Movie Database'],
-            $parsedRatings['Rotten Tomatoes'],
-            $parsedRatings['Metacritic'],
+            $parsedRatings['Internet Movie Database'] ?? null,
+            $parsedRatings['Rotten Tomatoes'] ?? null,
+            $parsedRatings['Metacritic'] ?? null,
         );
     }
 
