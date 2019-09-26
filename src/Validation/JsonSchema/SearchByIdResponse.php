@@ -35,10 +35,6 @@ final class SearchByIdResponse extends JsonSchema
                     'imdbVotes',
                     'imdbID',
                     'Type',
-                    'DVD',
-                    'BoxOffice',
-                    'Production',
-                    'Website',
                     'Response',
                 ],
                 'properties' => [

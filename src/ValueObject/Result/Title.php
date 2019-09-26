@@ -44,11 +44,11 @@ final class Title
 
     private Type $type;
 
-    private \DateTimeImmutable $dvdRelease;
+    private ?\DateTimeImmutable $dvdRelease;
 
     private ?string $boxOffice;
 
-    private string $producer;
+    private ?string $producer;
 
     private ?string $website;
 
@@ -73,9 +73,9 @@ final class Title
         int $imdbVotes,
         string $imdbId,
         Type $type,
-        \DateTimeImmutable $dvdRelease,
+        ?\DateTimeImmutable $dvdRelease,
         ?string $boxOffice,
-        string $producer,
+        ?string $producer,
         ?string $website
     ) {
         $this->title      = $title;
@@ -204,7 +204,7 @@ final class Title
         return $this->type;
     }
 
-    public function getDvdRelease(): \DateTimeImmutable
+    public function getDvdRelease(): ?\DateTimeImmutable
     {
         return $this->dvdRelease;
     }
@@ -214,7 +214,7 @@ final class Title
         return $this->boxOffice;
     }
 
-    public function getProducer(): string
+    public function getProducer(): ?string
     {
         return $this->producer;
     }

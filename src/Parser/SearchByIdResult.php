@@ -32,15 +32,19 @@ final class SearchByIdResult
             (int) $result['imdbVotes'],
             $result['imdbID'],
             Type::fromOmdbType($result['Type']),
-            $this->transformToDateTime($result['DVD']),
-            $this->getValueWhenAvailable($result['BoxOffice']),
-            $result['Production'],
-            $this->getValueWhenAvailable($result['Website']),
+            $this->transformToDateTime($result['DVD'] ?? null),
+            $this->getValueWhenAvailable($result['BoxOffice'] ?? null),
+            $result['Production'] ?? null,
+            $this->getValueWhenAvailable($result['Website'] ?? null),
         );
     }
 
-    private function transformToDateTime(string $date): \DateTimeImmutable
+    private function transformToDateTime(?string $date): \DateTimeImmutable
     {
+        if ($date === null) {
+            return null;
+        }
+
         return \DateTimeImmutable::createFromFormat('d M Y', $date);
     }
 
@@ -62,7 +66,7 @@ final class SearchByIdResult
         );
     }
 
-    private function getValueWhenAvailable(string $value): ?string
+    private function getValueWhenAvailable(?string $value): ?string
     {
         if ($value === 'N/A') {
             return null;
