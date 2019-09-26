@@ -5,14 +5,11 @@ namespace AsyncBot\Plugin\Imdb\Parser;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\SearchResult;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\SearchResults;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Type;
-use function ExceptionalJSON\decode;
 
 final class SearchByTitleResult
 {
-    public function parse(string $jsonResult): SearchResults
+    public function parse(array $result): SearchResults
     {
-        $result = decode($jsonResult, true);
-
         $results = array_map(fn (array $item) => $this->parseSearchResultItem($item), $result['Search']);
 
         return new SearchResults(...$results);
