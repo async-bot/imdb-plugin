@@ -2,6 +2,7 @@
 
 namespace AsyncBot\Plugin\Imdb\Parser;
 
+use AsyncBot\Plugin\Imdb\Exception\InvalidType;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\SearchResult;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\SearchResults;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Type;
@@ -12,18 +13,25 @@ final class SearchByTitleResult
     {
         $results = array_map(fn (array $item) => $this->parseSearchResultItem($item), $result['Search']);
 
+        $results = array_filter($results);
+
         return new SearchResults(...$results);
     }
 
-    private function parseSearchResultItem(array $item): SearchResult
+    private function parseSearchResultItem(array $item): ?SearchResult
     {
-        return new SearchResult(
-            $item['Title'],
-            (int) $item['Year'],
-            $item['imdbID'],
-            Type::fromOmdbType($item['Type']),
-            $this->getValueWhenAvailable($item['Poster']),
-        );
+        try {
+            return new SearchResult(
+                $item['Title'],
+                (int) $item['Year'],
+                $item['imdbID'],
+                Type::fromOmdbType($item['Type']),
+                $this->getValueWhenAvailable($item['Poster']),
+            );
+        } catch (InvalidType $e) {
+            // we are not interested in games
+            return null;
+        }
     }
 
     private function getValueWhenAvailable(string $value): ?string

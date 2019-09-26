@@ -12,8 +12,12 @@ final class SearchResults
         $this->searchResults = $searchResults;
     }
 
-    public function getFirst(): SearchResult
+    public function getFirst(): ?SearchResult
     {
+        if (!isset($this->searchResults[0])) {
+            return null;
+        }
+
         return $this->searchResults[0];
     }
 }
