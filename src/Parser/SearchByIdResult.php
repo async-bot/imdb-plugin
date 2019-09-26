@@ -3,6 +3,7 @@
 namespace AsyncBot\Plugin\Imdb\Parser;
 
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Rating;
+use AsyncBot\Plugin\Imdb\ValueObject\Result\Ratings;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Title;
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Type;
 
@@ -45,9 +46,8 @@ final class SearchByIdResult
 
     /**
      * @param $ratings array<string,string>
-     * @return array<Rating>
      */
-    private function transformToRatings(array $ratings): array
+    private function transformToRatings(array $ratings): Ratings
     {
         $parsedRatings = [];
 
@@ -55,7 +55,11 @@ final class SearchByIdResult
             $parsedRatings[$rating['Source']] = new Rating($rating['Source'], $rating['Value']);
         }
 
-        return $parsedRatings;
+        return new Ratings(
+            $parsedRatings['Internet Movie Database'],
+            $parsedRatings['Rotten Tomatoes'],
+            $parsedRatings['Metacritic'],
+        );
     }
 
     private function getValueWhenAvailable(string $value): ?string
