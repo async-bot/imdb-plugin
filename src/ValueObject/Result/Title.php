@@ -8,9 +8,9 @@ final class Title
 
     private int $year;
 
-    private string $rated;
+    private ?string $rated;
 
-    private \DateTimeImmutable $released;
+    private ?\DateTimeImmutable $released;
 
     private string $runTime;
 
@@ -18,9 +18,9 @@ final class Title
 
     private ?string $director;
 
-    private string $writers;
+    private ?string $writers;
 
-    private string $actors;
+    private ?string $actors;
 
     private string $plot;
 
@@ -55,13 +55,13 @@ final class Title
     public function __construct(
         string $title,
         int $year,
-        string $rated,
-        \DateTimeImmutable $released,
+        ?string $rated,
+        ?\DateTimeImmutable $released,
         string $runTime,
         string $genre,
         ?string $director,
-        string $writers,
-        string $actors,
+        ?string $writers,
+        ?string $actors,
         string $plot,
         string $language,
         string $country,
@@ -114,12 +114,12 @@ final class Title
         return $this->year;
     }
 
-    public function getRated(): string
+    public function getRated(): ?string
     {
         return $this->rated;
     }
 
-    public function getReleased(): \DateTimeImmutable
+    public function getReleased(): ?\DateTimeImmutable
     {
         return $this->released;
     }
@@ -139,12 +139,12 @@ final class Title
         return $this->director;
     }
 
-    public function getWriters(): string
+    public function getWriters(): ?string
     {
         return $this->writers;
     }
 
-    public function getActors(): string
+    public function getActors(): ?string
     {
         return $this->actors;
     }

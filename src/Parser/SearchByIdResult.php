@@ -14,13 +14,13 @@ final class SearchByIdResult
         return new Title(
             $result['Title'],
             (int) $result['Year'],
-            $result['Rated'],
+            $this->getValueWhenAvailable($result['Rated']),
             $this->transformToDateTime($result['Released']),
             $result['Runtime'],
             $result['Genre'],
             $this->getValueWhenAvailable($result['Director']),
-            $result['Writer'],
-            $result['Actors'],
+            $this->getValueWhenAvailable($result['Writer']),
+            $this->getValueWhenAvailable($result['Actors']),
             $result['Plot'],
             $result['Language'],
             $result['Country'],
@@ -39,9 +39,9 @@ final class SearchByIdResult
         );
     }
 
-    private function transformToDateTime(?string $date): \DateTimeImmutable
+    private function transformToDateTime(?string $date): ?\DateTimeImmutable
     {
-        if ($date === null) {
+        if ($date === null || $date === 'N/A') {
             return null;
         }
 
