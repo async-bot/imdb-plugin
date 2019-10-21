@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace AsyncBot\Plugin\ImdbTest\Unit\ValueObject\Result;
 
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Rating;
@@ -10,16 +9,24 @@ use PHPUnit\Framework\TestCase;
 
 class RatingsTest extends TestCase
 {
-    public function testConstructorAssignmentIsCorrect(): void
-    {
-        $ratingImdb = new Rating("Internet Movie Database", "7.6/10");
-        $ratingRt = new Rating("Rotten Tomatoes", "84%");
-        $ratingMeta = new Rating("Metacritic", "67/100");
-        $ratings = new Ratings($ratingImdb, $ratingRt, $ratingMeta);
+    private Rating $ratingImdb;
+    private Rating $ratingRt;
+    private Rating $ratingMeta;
+    private Ratings $ratings;
 
-        $this->assertEquals($ratingImdb, $ratings->getImdb());
-        $this->assertEquals($ratingRt, $ratings->getRottenTomatoes());
-        $this->assertEquals($ratingMeta, $ratings->getMetaCritic());
+    public function testGetImdb(): void
+    {
+        $this->assertSame($this->ratingImdb, $this->ratings->getImdb());
+    }
+
+    public function testGetRottenTomatoes(): void
+    {
+        $this->assertSame($this->ratingRt, $this->ratings->getRottenTomatoes());
+    }
+
+    public function testGetMetaCritic(): void
+    {
+        $this->assertSame($this->ratingMeta, $this->ratings->getMetaCritic());
     }
 
     public function testNullConstructorParams(): void
@@ -29,5 +36,14 @@ class RatingsTest extends TestCase
         $this->assertEmpty($ratings->getImdb());
         $this->assertEmpty($ratings->getRottenTomatoes());
         $this->assertEmpty($ratings->getMetaCritic());
+    }
+
+    protected function setUp(): void
+    {
+        $this->ratingImdb = new Rating('Internet Movie Database', '7.6/10');
+        $this->ratingRt   = new Rating('Rotten Tomatoes', '84%');
+        $this->ratingMeta = new Rating('Metacritic', '67/100');
+
+        $this->ratings = new Ratings($this->ratingImdb, $this->ratingRt, $this->ratingMeta);
     }
 }

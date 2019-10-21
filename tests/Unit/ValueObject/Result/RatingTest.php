@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace AsyncBot\Plugin\ImdbTest\Unit\ValueObject\Result;
 
 use AsyncBot\Plugin\Imdb\ValueObject\Result\Rating;
@@ -9,12 +8,23 @@ use PHPUnit\Framework\TestCase;
 
 class RatingTest extends TestCase
 {
-    public function testConstructorAssignsCorrectValues(): void
+    private Rating $rating;
+
+    public function testGetSource(): void
     {
-        $source = "Internet Movie Database";
-        $value = "7.6/10";
-        $rating = new Rating($source, $value);
-        $this->assertEquals($source, $rating->getSource());
-        $this->assertEquals($value, $rating->getValue());
+        $this->assertSame('Internet Movie Database', $this->rating->getSource());
+    }
+
+    public function testGetValue(): void
+    {
+        $this->assertSame('7.6/10', $this->rating->getValue());
+    }
+
+    protected function setUp(): void
+    {
+        $source = 'Internet Movie Database';
+        $value  = '7.6/10';
+
+        $this->rating = new Rating($source, $value);
     }
 }

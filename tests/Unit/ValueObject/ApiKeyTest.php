@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace AsyncBot\Plugin\ImdbTest\Unit\ValueObject;
 
 use AsyncBot\Plugin\Imdb\ValueObject\ApiKey;
@@ -11,8 +10,10 @@ class ApiKeyTest extends TestCase
 {
     public function testSetterAndGetter(): void
     {
-        $key = "TestKey";
+        $key = 'TestKey';
+
         $apiKeyObj = new ApiKey($key);
-        $this->assertEquals($key, $apiKeyObj->getKey());
+
+        $this->assertSame($key, $apiKeyObj->getKey());
     }
 }
