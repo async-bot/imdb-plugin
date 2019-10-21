@@ -11,7 +11,7 @@ final class Rating
     public function __construct(string $source, string $value)
     {
         $this->source = $source;
-        $this->value  = $value;
+        $this->value = $value;
     }
 
     public function getSource(): string
