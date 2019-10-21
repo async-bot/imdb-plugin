@@ -17,6 +17,64 @@ class TitleTest extends TestCase
     Private \DateTimeImmutable $released;
     Private \DateTimeImmutable $dvdRelease;
 
+    protected function setUp(): void
+    {
+        $ratingImdb = new Rating('Internet Movie Database', '7.6/10');
+        $ratingRt   = new Rating('Rotten Tomatoes', '84%');
+        $ratingMeta = new Rating('Metacritic', '67/100');
+
+        $this->ratings    = new Ratings($ratingImdb, $ratingRt, $ratingMeta);
+        $title            = 'Guardians of the Galaxy Vol. 2';
+        $year             = 2017;
+        $rated            = 'PG-13';
+        $this->released   = \DateTimeImmutable::createFromFormat('d M Y', '05 May 2017');
+        $runTime          = '136 min';
+        $genre            = 'Action, Adventure, Comedy, Sci-Fi';
+        $director         = 'James Gunn';
+        $writers          = 'James Gunn, Dan Abnett...';
+        $actors           = 'Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel';
+        $plot             = 'The Guardians struggle to keep togeth...';
+        $language         = 'English';
+        $country          = 'USA';
+        $awards           = 'Nominated for 1 Oscar. Another 12 wins & 42 nominations.';
+        $poster           = 'https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg';
+        $metaScore        = 67;
+        $imdbRating       = 7.6;
+        $imdbVotes        = 507090;
+        $imdbId           = 'tt3896198';
+        $this->type       = new Type('movie');
+        $this->dvdRelease = \DateTimeImmutable::createFromFormat('d M Y', '22 Aug 2017');
+        $boxOffice        = '$389,804,217';
+        $producer         = 'Walt Disney Pictures';
+        $website          = 'https://marvel.com/guardians';
+
+        $this->title = new Title(
+            $title,
+            $year,
+            $rated,
+            $this->released,
+            $runTime,
+            $genre,
+            $director,
+            $writers,
+            $actors,
+            $plot,
+            $language,
+            $country,
+            $awards,
+            $poster,
+            $this->ratings,
+            $metaScore,
+            $imdbRating,
+            $imdbVotes,
+            $imdbId,
+            $this->type,
+            $this->dvdRelease,
+            $boxOffice,
+            $producer,
+            $website);
+    }
+
     public function testGetTitle(): void
     {
         $this->assertSame('Guardians of the Galaxy Vol. 2', $this->title->getTitle());
@@ -135,63 +193,5 @@ class TitleTest extends TestCase
     public function testGetWebsite(): void
     {
         $this->assertSame('https://marvel.com/guardians', $this->title->getWebsite());
-    }
-
-    protected function setUp(): void
-    {
-        $ratingImdb = new Rating('Internet Movie Database', '7.6/10');
-        $ratingRt   = new Rating('Rotten Tomatoes', '84%');
-        $ratingMeta = new Rating('Metacritic', '67/100');
-
-        $this->ratings    = new Ratings($ratingImdb, $ratingRt, $ratingMeta);
-        $title            = 'Guardians of the Galaxy Vol. 2';
-        $year             = 2017;
-        $rated            = 'PG-13';
-        $this->released   = \DateTimeImmutable::createFromFormat('d M Y', '05 May 2017');
-        $runTime          = '136 min';
-        $genre            = 'Action, Adventure, Comedy, Sci-Fi';
-        $director         = 'James Gunn';
-        $writers          = 'James Gunn, Dan Abnett...';
-        $actors           = 'Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel';
-        $plot             = 'The Guardians struggle to keep togeth...';
-        $language         = 'English';
-        $country          = 'USA';
-        $awards           = 'Nominated for 1 Oscar. Another 12 wins & 42 nominations.';
-        $poster           = 'https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg';
-        $metaScore        = 67;
-        $imdbRating       = 7.6;
-        $imdbVotes        = 507090;
-        $imdbId           = 'tt3896198';
-        $this->type       = new Type('movie');
-        $this->dvdRelease = \DateTimeImmutable::createFromFormat('d M Y', '22 Aug 2017');
-        $boxOffice        = '$389,804,217';
-        $producer         = 'Walt Disney Pictures';
-        $website          = 'https://marvel.com/guardians';
-
-        $this->title = new Title(
-            $title,
-            $year,
-            $rated,
-            $this->released,
-            $runTime,
-            $genre,
-            $director,
-            $writers,
-            $actors,
-            $plot,
-            $language,
-            $country,
-            $awards,
-            $poster,
-            $this->ratings,
-            $metaScore,
-            $imdbRating,
-            $imdbVotes,
-            $imdbId,
-            $this->type,
-            $this->dvdRelease,
-            $boxOffice,
-            $producer,
-            $website);
     }
 }

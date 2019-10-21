@@ -14,6 +14,15 @@ class RatingsTest extends TestCase
     private Rating $ratingMeta;
     private Ratings $ratings;
 
+    protected function setUp(): void
+    {
+        $this->ratingImdb = new Rating('Internet Movie Database', '7.6/10');
+        $this->ratingRt   = new Rating('Rotten Tomatoes', '84%');
+        $this->ratingMeta = new Rating('Metacritic', '67/100');
+
+        $this->ratings = new Ratings($this->ratingImdb, $this->ratingRt, $this->ratingMeta);
+    }
+
     public function testGetImdb(): void
     {
         $this->assertSame($this->ratingImdb, $this->ratings->getImdb());
@@ -36,14 +45,5 @@ class RatingsTest extends TestCase
         $this->assertEmpty($ratings->getImdb());
         $this->assertEmpty($ratings->getRottenTomatoes());
         $this->assertEmpty($ratings->getMetaCritic());
-    }
-
-    protected function setUp(): void
-    {
-        $this->ratingImdb = new Rating('Internet Movie Database', '7.6/10');
-        $this->ratingRt   = new Rating('Rotten Tomatoes', '84%');
-        $this->ratingMeta = new Rating('Metacritic', '67/100');
-
-        $this->ratings = new Ratings($this->ratingImdb, $this->ratingRt, $this->ratingMeta);
     }
 }
